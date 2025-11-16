@@ -1,22 +1,29 @@
 """
-MATRIX CORE - Основной пакет нейро-экосистемы строительства.
+Модуль маршрутов API MATRIX CORE.
+
+Определяет все API endpoint-ы системы.
 """
 
-__version__ = "1.0.0"
-__author__ = "Дома-Цены.РФ"
-__description__ = "Автономный AI-мозг строительной экосистемы"
+from flask import Blueprint
 
-from flask import Flask
-from .config import Config
+# Создаем основной Blueprint для API
+api_bp = Blueprint('api', __name__)
 
+# Импортируем все маршруты
+from . import analysis_routes
+from . import partner_routes  
+from . import user_routes
+from . import connection_routes
 
-def create_app():
-    """Фабрика приложений Flask"""
-    app = Flask(__name__)
-    app.config.from_object(Config)
-    
-    # Инициализация модулей
-    from .routes import api_bp
-    app.register_blueprint(api_bp, url_prefix='/api/v1')
-    
-    return app
+# Регистрируем модули маршрутов
+from .analysis_routes import analysis_bp
+from .partner_routes import partner_bp
+from .user_routes import user_bp
+from .connection_routes import connection_bp
+
+api_bp.register_blueprint(analysis_bp, url_prefix='/analyze')
+api_bp.register_blueprint(partner_bp, url_prefix='/partners')
+api_bp.register_blueprint(user_bp, url_prefix='/users') 
+api_bp.register_blueprint(connection_bp, url_prefix='/connect')
+
+__all__ = ['api_bp']
