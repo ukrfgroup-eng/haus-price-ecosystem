@@ -34,7 +34,10 @@ class ProductionConfig(Config):
 class TestingConfig(Config):
     """Конфигурация для тестирования"""
     TESTING = True
+    DEBUG = True
     DATABASE_URL = 'sqlite:///test.db'
+    LOG_LEVEL = 'DEBUG'
+    LOG_FILE = 'test.log'
 
 config = {
     'development': DevelopmentConfig,
