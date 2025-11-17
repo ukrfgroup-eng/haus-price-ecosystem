@@ -2,21 +2,24 @@ name: Python Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
     
-    - name: Set up Python
+    - name: Set up Python 3.9
       uses: actions/setup-python@v3
       with:
         python-version: '3.9'
+        cache: 'pip'
     
     - name: Install dependencies
       run: |
@@ -25,10 +28,20 @@ jobs:
     
     - name: Run basic tests
       run: |
-        python -m pytest tests/ -v
+        cd backend
+        python -m pytest ../tests/ -v --tb=short
     
-    - name: Quick system check
+    - name: Run quick check
       run: |
-        python -c "from backend.app import create_app; print('✅ App imports work')"
-        python -c "from backend.models.user_models import User; print('✅ Models import work')"
-        python -c "from backend.utils.ai_helpers import analyze_user_intent; print('✅ AI helpers work')"
+        python tests/quick_check.py
+    
+    - name: Test imports
+      run: |
+        cd backend
+        python -c "from app import create_app; print('✅ App import successful')"
+        python -c "from models.user_models import User; print('✅ Models import successful')"
+        python -c "from utils.ai_helpers import analyze_user_intent; print('✅ AI helpers import successful')"
+    
+    - name: Create demo data
+      run: |
+        python scripts/seed_demo_data.py
