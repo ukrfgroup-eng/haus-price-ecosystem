@@ -1,79 +1,66 @@
 """
-Скрипт для создания демо-данных MATRIX CORE
+Упрощенный скрипт для создания демо-данных MATRIX CORE
 """
 
 import sys
 import os
 from datetime import datetime
 
-# Добавляем путь к backend для импортов
-sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-
 def create_demo_data():
-    """Создание демо-данных для показа партнерам"""
+    """Создание упрощенных демо-данных"""
     
-    print("🧠 СОЗДАНИЕ ДЕМО-ДАННЫХ ДЛЯ MATRIX CORE...")
+    print("🧠 СОЗДАНИЕ УПРОЩЕННЫХ ДЕМО-ДАННЫХ...")
     
-    # Импортируем наши хранилища
-    from backend.routes.analysis_routes import analysis_results, user_requests
-    from backend.routes.partner_routes import partners_db, partner_profiles
-    from backend.routes.user_routes import users_db, user_profiles_db, user_requests_db
-    from backend.routes.connection_routes import connections_db
-    
-    # Очищаем существующие данные
-    analysis_results.clear()
-    user_requests.clear()
-    partners_db.clear()
-    partner_profiles.clear()
-    users_db.clear()
-    user_profiles_db.clear()
-    user_requests_db.clear()
-    connections_db.clear()
-    
-    print("✅ Очищены предыдущие данные")
-    
-    # Создаем тестовых партнеров
-    demo_partners = [
-        {
-            "partner_id": "partner_crisis_1",
-            "user_id": "user_contractor_1", 
-            "company_name": "СтройДом Экспресс",
+    try:
+        # Добавляем путь для импортов
+        sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        
+        # Импортируем хранилища
+        from backend.routes.analysis_routes import analysis_results, user_requests
+        from backend.routes.partner_routes import partners_db
+        from backend.routes.user_routes import users_db
+        from backend.routes.connection_routes import connections_db
+        
+        # Очищаем данные
+        analysis_results.clear()
+        user_requests.clear()
+        partners_db.clear()
+        users_db.clear()
+        connections_db.clear()
+        
+        # Простые демо-данные
+        users_db["demo_customer"] = {
+            "user_id": "demo_customer",
+            "user_type": "customer", 
+            "email": "demo@example.com",
+            "created_at": datetime.now().isoformat()
+        }
+        
+        partners_db["demo_partner"] = {
+            "partner_id": "demo_partner",
+            "company_name": "Демо Строительная Компания",
             "user_type": "contractor",
-            "email": "crisis1@stroydom.ru",
-            "specializations": ["каркасные дома", "деревянные дома"],
+            "specializations": ["каркасные дома"],
             "regions": ["Московская область"],
-            "current_workload": 20,
-            "available_capacity": 80,
-            "urgency_level": 9,
-            "min_order_size": 500000,
-            "flexible_pricing": True,
-            "verification_status": "verified"
+            "urgency_level": 7
         }
-    ]
+        
+        print("✅ Демо-данные созданы:")
+        print(f"   - Пользователей: {len(users_db)}")
+        print(f"   - Партнеров: {len(partners_db)}")
+        print(f"   - Анализов: {len(analysis_results)}")
+        print(f"   - Соединений: {len(connections_db)}")
+        
+    except Exception as e:
+        print(f"❌ Ошибка создания демо-данных: {e}")
+        return False
     
-    for partner in demo_partners:
-        partners_db[partner['partner_id']] = partner
-        partner_profiles[partner['user_id']] = partner
-    
-    print("✅ Созданы демо-партнеры")
-    
-    # Создаем тестовых пользователей
-    demo_users = [
-        {
-            "user_id": "user_customer_1",
-            "user_type": "customer",
-            "email": "customer1@example.com",
-            "created_at": datetime.now().isoformat(),
-            "is_active": True
-        }
-    ]
-    
-    for user in demo_users:
-        users_db[user['user_id']] = user
-    
-    print("✅ Созданы демо-пользователи")
-    
-    print("🎉 ДЕМО-ДАННЫЕ СОЗДАНЫ!")
+    return True
 
 if __name__ == "__main__":
-    create_demo_data()
+    success = create_demo_data()
+    if success:
+        print("🎉 ДЕМО-ДАННЫЕ УСПЕШНО СОЗДАНЫ!")
+    else:
+        print("💥 ОШИБКА СОЗДАНИЯ ДЕМО-ДАННЫХ")
+        sys.exit(1)
