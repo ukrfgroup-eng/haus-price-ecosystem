@@ -1,4 +1,4 @@
-name: Simple Python Test
+name: Matrix Core Tests
 
 on: [push, pull_request]
 
@@ -15,5 +15,11 @@ jobs:
       with:
         python-version: '3.9'
         
-    - name: Run simple test
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+        
+    - name: Run basic test
       run: python tests/simple_test.py
+      
+    - name: Run API tests
+      run: python tests/test_api_endpoints.py
