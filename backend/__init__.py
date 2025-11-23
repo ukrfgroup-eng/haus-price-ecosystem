@@ -1,1 +1,1 @@
-# Этот файл делает папку backend Python пакетом
+# Utils package
