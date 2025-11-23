@@ -94,53 +94,6 @@ def create_demo_data():
                 "verification_status": "verified",
                 "is_active": True,
                 "created_at": (datetime.now() - timedelta(days=25)).isoformat()
-            },
-            {
-                "partner_id": "contractor_003",
-                "company_name": "Быстрый Дом",
-                "user_type": "contractor",
-                "email": "fast@house.ru", 
-                "company_data": {
-                    "specializations": ["каркасные дома", "модульные дома"],
-                    "regions": ["Московская область", "Владимирская область"],
-                    "experience_years": 3,
-                    "completed_projects": 12,
-                    "team_size": 6,
-                    "current_workload": 20,
-                    "production_capacity": "до 3 объектов в месяц"
-                },
-                "crisis_indicators": {
-                    "urgency_level": 9,
-                    "available_capacity": 80,
-                    "flexible_pricing": True,
-                    "special_conditions": ["срочный выезд", "скидка 15% до конца месяца"]
-                },
-                "verification_status": "verified", 
-                "is_active": True,
-                "created_at": (datetime.now() - timedelta(days=15)).isoformat()
-            },
-            {
-                "partner_id": "manufacturer_001",
-                "company_name": "Деревянные Конструкции",
-                "user_type": "manufacturer",
-                "email": "wood@construct.ru",
-                "company_data": {
-                    "specializations": ["производство каркасов", "клееный брус"],
-                    "regions": ["вся Россия"],
-                    "experience_years": 12,
-                    "production_capacity": "1000 м² в месяц",
-                    "min_order": "50 м²",
-                    "delivery_time": "7-14 дней"
-                },
-                "crisis_indicators": {
-                    "urgency_level": 6,
-                    "available_capacity": 60,
-                    "flexible_pricing": True,
-                    "special_conditions": ["бесплатная доставка по Москве"]
-                },
-                "verification_status": "verified",
-                "is_active": True,
-                "created_at": (datetime.now() - timedelta(days=40)).isoformat()
             }
         ],
         
@@ -159,23 +112,7 @@ def create_demo_data():
                 },
                 "status": "completed",
                 "created_at": (datetime.now() - timedelta(days=3)).isoformat(),
-                "matched_partners": ["contractor_001", "contractor_003"]
-            },
-            {
-                "request_id": "req_002",
-                "user_id": "customer_002",
-                "request_type": "partner_search", 
-                "request_data": {
-                    "message": "Нужен подрядчик для отделки квартиры в Санкт-Петербурге",
-                    "region": "Ленинградская область",
-                    "specialization": "отделочные работы",
-                    "budget_range": "1-1.5 млн", 
-                    "timeline": "2 месяца",
-                    "urgency_level": 5
-                },
-                "status": "pending",
-                "created_at": (datetime.now() - timedelta(days=1)).isoformat(),
-                "matched_partners": []
+                "matched_partners": ["contractor_001"]
             }
         ]
     }
