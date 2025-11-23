@@ -22,5 +22,8 @@ jobs:
     - name: Run basic test
       run: python tests/simple_test.py
       
-    - name: Run API tests
+    - name: Run basic API tests
+      run: python tests/test_api_basic.py
+      
+    - name: Run full API tests
       run: python tests/test_api_endpoints.py
