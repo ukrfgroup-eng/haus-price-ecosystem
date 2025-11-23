@@ -8,5 +8,6 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    
     - name: Run simple test
-      run: python -m pytest tests/test_simple.py -v
+      run: python tests/test_simple.py
