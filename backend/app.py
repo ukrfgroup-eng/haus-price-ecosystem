@@ -56,3 +56,11 @@ try:
     app.register_blueprint(demo_bp, url_prefix='/api/v1')
 except ImportError:
     print("⚠️  Demo routes не загружены (возможно файл отсутствует)")
+# Добавь этот код после существующих маршрутов, перед созданием app
+
+try:
+    from backend.routes.demo_routes import demo_bp
+    app.register_blueprint(demo_bp, url_prefix='/api/v1')
+    print("✅ Demo routes зарегистрированы")
+except ImportError as e:
+    print(f"⚠️  Demo routes не загружены: {e}")
