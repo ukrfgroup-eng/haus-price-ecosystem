@@ -1,0 +1,4 @@
+# Временные файлы для игнорирования
+fix_structure.py
+check_models.py
+find_wrong_imports.py
