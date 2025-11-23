@@ -27,3 +27,5 @@ jobs:
       
     - name: Run API tests
       run: python tests/test_api_endpoints.py
+    - name: Run demo data tests
+      run: python tests/test_demo_data.py
