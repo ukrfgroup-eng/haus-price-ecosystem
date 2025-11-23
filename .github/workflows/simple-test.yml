@@ -19,11 +19,11 @@ jobs:
       run: |
         pip install -r requirements.txt
         
+    - name: Run project structure test
+      run: python tests/test_project_structure.py
+      
     - name: Run basic test
       run: python tests/simple_test.py
       
-    - name: Run basic API tests
-      run: python tests/test_api_basic.py
-      
-    - name: Run full API tests
+    - name: Run API tests
       run: python tests/test_api_endpoints.py
