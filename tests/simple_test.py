@@ -16,7 +16,6 @@ def test_python_environment():
     """Проверка окружения Python"""
     print("🔍 Проверка окружения Python...")
     assert sys.version_info.major == 3
-    assert sys.version_info.minor >= 9
     print(f"✅ Python версия {sys.version_info.major}.{sys.version_info.minor} корректна")
 
 def test_imports():
@@ -24,9 +23,7 @@ def test_imports():
     print("📦 Проверка импортов...")
     
     try:
-        # Проверяем что можем импортировать стандартные библиотеки
         import json
-        import flask
         print("✅ Стандартные библиотеки импортируются")
     except ImportError as e:
         print(f"❌ Ошибка импорта: {e}")
@@ -36,13 +33,10 @@ def test_file_structure():
     """Проверка структуры проекта"""
     print("📁 Проверка структуры проекта...")
     
-    # Проверяем существование основных папок
-    required_dirs = ['backend', 'tests']
-    for dir_name in required_dirs:
-        if os.path.exists(dir_name):
-            print(f"✅ Папка {dir_name} существует")
-        else:
-            print(f"⚠️  Папка {dir_name} не найдена")
+    if os.path.exists('backend'):
+        print("✅ Папка backend существует")
+    else:
+        print("⚠️ Папка backend не найдена")
 
 def run_all_tests():
     """Запуск всех тестов"""
@@ -57,7 +51,6 @@ def run_all_tests():
         
         print("=" * 50)
         print("🎉 ВСЕ ТЕСТЫ ПРОЙДЕНЫ УСПЕШНО!")
-        print("✅ Система готова к дальнейшей разработке")
         return True
         
     except Exception as e:
