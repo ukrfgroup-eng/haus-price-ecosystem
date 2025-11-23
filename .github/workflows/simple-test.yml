@@ -16,4 +16,4 @@ jobs:
         python-version: '3.9'
         
     - name: Run simple test
-      run: python tests/test_simple.py
+      run: python tests/simple_test.py
