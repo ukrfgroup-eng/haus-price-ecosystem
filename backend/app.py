@@ -43,14 +43,6 @@ def create_app(config_name='default'):
             }
         })
     
-    # Регистрация demo routes
-    try:
-        from backend.routes.demo_routes import demo_bp as demo_routes_bp
-        app.register_blueprint(demo_routes_bp, url_prefix='/api/v1')
-        print("✅ Demo routes зарегистрированы")
-    except ImportError as e:
-        print(f"⚠️  Demo routes не загружены: {e}")
-    
     return app
 
 app = create_app()
