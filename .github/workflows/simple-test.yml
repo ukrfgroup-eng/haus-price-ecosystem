@@ -3,7 +3,7 @@ name: Matrix Core Tests
 on: [push, pull_request]
 
 jobs:
-  simple-test:
+  api-tests:
     runs-on: ubuntu-latest
     
     steps:
@@ -16,7 +16,8 @@ jobs:
         python-version: '3.9'
         
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: |
+        pip install -r requirements.txt
         
     - name: Run basic test
       run: python tests/simple_test.py
