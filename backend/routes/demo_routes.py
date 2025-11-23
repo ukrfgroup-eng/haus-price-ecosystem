@@ -4,7 +4,8 @@ API endpoints для демо-данных MATRIX CORE
 
 from flask import Blueprint, jsonify
 
-demo_bp = Blueprint('demo_routes', __name__)
+# Исправляем имя blueprint
+demo_bp = Blueprint('demo_bp', __name__)
 
 @demo_bp.route('/demo/data', methods=['GET'])
 def get_demo_data():
