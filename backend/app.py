@@ -52,7 +52,7 @@ if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
 # Добавь этот импорт после существующих импортов
 try:
-    from backend.routes.demo_routes import demo_bp
+    from backend.routes.demo_routes import demo_bp as demo_routes_bp
     app.register_blueprint(demo_bp, url_prefix='/api/v1')
 except ImportError:
     print("⚠️  Demo routes не загружены (возможно файл отсутствует)")
