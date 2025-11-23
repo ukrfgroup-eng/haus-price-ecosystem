@@ -11,6 +11,19 @@ def test_project_structure():
     print("📁 ПРОВЕРКА СТРУКТУРЫ ПРОЕКТА")
     print("=" * 50)
     
+    # Отладочная информация
+    print(f"📂 Текущая рабочая директория: {os.getcwd()}")
+    print("📂 Содержимое текущей директории:")
+    for item in os.listdir('.'):
+        print(f"   - {item}")
+    
+    print("📂 Содержимое папки backend:")
+    if os.path.exists('backend'):
+        for item in os.listdir('backend'):
+            print(f"   - {item}")
+    else:
+        print("   ❌ Папка backend не найдена!")
+    
     required_items = [
         # Папки
         ('backend', 'папка'),
@@ -30,10 +43,13 @@ def test_project_structure():
     all_exist = True
     
     for path, item_type in required_items:
+        full_path = os.path.abspath(path)
         if os.path.exists(path):
             print(f"✅ {item_type} {path} существует")
+            print(f"   📍 Полный путь: {full_path}")
         else:
             print(f"❌ {item_type} {path} не найден")
+            print(f"   📍 Полный путь: {full_path}")
             all_exist = False
     
     print("=" * 50)
