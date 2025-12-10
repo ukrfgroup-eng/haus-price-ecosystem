@@ -1,0 +1,31 @@
+{
+  "regions": [
+    {
+      "id": "moscow",
+      "name": "Москва",
+      "type": "city",
+      "parent": "moscow_region"
+    },
+    {
+      "id": "moscow_region",
+      "name": "Московская область",
+      "type": "region",
+      "districts": [
+        "Красногорский район",
+        "Одинцовский район", 
+        "Ленинский район",
+        "Домодедовский район"
+      ]
+    },
+    {
+      "id": "spb",
+      "name": "Санкт-Петербург",
+      "type": "city"
+    },
+    {
+      "id": "leningrad_region",
+      "name": "Ленинградская область",
+      "type": "region"
+    }
+  ]
+}
