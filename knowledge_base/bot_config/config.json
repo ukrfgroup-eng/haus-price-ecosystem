@@ -1,0 +1,30 @@
+{
+  "bot_name": "HAUS-PRICE Партнерский бот",
+  "bot_username": "@partner_haus_price_bot",
+  "version": "1.0.0",
+  "description": "Бот для регистрации партнеров в экосистеме Дома-Цены.РФ",
+  
+  "api_endpoints": {
+    "github_raw": "https://raw.githubusercontent.com/ukrfgroup-eng/haus-price-ecosystem/main/",
+    "fns_api": "https://api-fns.ru/api/check",
+    "own_api": "https://api.doma-ceni.ru/v1/"
+  },
+  
+  "registration_flow": {
+    "stages": [
+      "company_name",
+      "inn_verification", 
+      "contact_info",
+      "specialization",
+      "regions",
+      "completion"
+    ],
+    "timeout_minutes": 30,
+    "max_attempts": 3
+  },
+  
+  "notifications": {
+    "admin_chat_id": "123456789",
+    "log_webhook": "https://discord.com/api/webhooks/..."
+  }
+}
