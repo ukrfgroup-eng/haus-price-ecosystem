@@ -1,0 +1,28 @@
+{
+  "stage": "contact_info",
+  "order": 3,
+  "fields": [
+    {
+      "name": "phone",
+      "prompt": "📱 Введите контактный телефон:",
+      "type": "phone",
+      "required": true,
+      "format": "+7XXXXXXXXXX",
+      "placeholder": "+79991234567"
+    },
+    {
+      "name": "email", 
+      "prompt": "📧 Введите email для связи:",
+      "type": "email",
+      "required": false,
+      "placeholder": "info@company.ru"
+    },
+    {
+      "name": "contact_person",
+      "prompt": "👤 Введите ФИО контактного лица:",
+      "type": "text",
+      "required": true
+    }
+  ],
+  "next_stage": "specialization"
+}
